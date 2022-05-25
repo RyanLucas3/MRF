@@ -19,6 +19,7 @@ First order of business is to import MRF and matplotlib, a useful plotting packa
 
 .. code-block:: python
 
+   pip install MacroRandomForest
    from MRF import *
    import matplotlib.pyplot as plt
 
@@ -141,6 +142,7 @@ First order of business is to import MRF, seaborn (a useful plotting package) an
 
 .. code-block:: python
 
+   pip install MacroRandomForest
    from MRF import *
    import seaborn as sns
    import numpy as np
