@@ -47,12 +47,17 @@ Installation
 Python
 ------
 
-To install the package in Python, you can simply do:
+To install the package and its dependencies in Python, you can simply do:
+
+.. code-block:: python
+
+   pip install MacroRandomForest
+
+To download some sample notebooks, you can also use:
 
 .. code-block:: python
 
    git clone https://github.com/RyanLucas3/MacroRandomForest
-
 
 Now you're ready to get started! Head over to :ref:`Usage <usage>` to find out how to implement MRF.
 
