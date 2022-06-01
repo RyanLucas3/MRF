@@ -53,7 +53,7 @@ To install the package and its dependencies in Python, you can simply do:
 
    pip install MacroRandomForest
 
-To download some sample notebooks, you can also use:
+To download some sample notebooks, you can use:
 
 .. code-block:: python
 
