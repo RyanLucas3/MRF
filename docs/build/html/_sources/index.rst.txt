@@ -75,7 +75,7 @@ To install the package in R, simply run the following commands:
    library(MacroRF)
 
 .. note::
-   This documentation contains detailed information about the implementation of the Python version, with less detail for R. 
+   This documentation contains detailed information about the implementation of the Python version, with slightly less detail for R. 
    
    Still, the implementation is simple and the same guidelines for hyperparameter selection will apply to both versions. Head over to  :ref:`Usage<usage>` for more details.
 
