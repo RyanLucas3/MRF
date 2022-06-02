@@ -81,7 +81,7 @@ This regularisation is implemented by taking the rolling-window view of time-var
 
 Informally, the kernel puts a weight of 1 on observation  :math:`t`, a weight of :math:`\zeta < 1` for observations :math:`t-1` and :math:`t+1` and a weight of :math:`\zeta^2` for observations :math:`t-2` and :math:`t+2`. Since some specific :math:`t`'s will come up many times (for instance if observations :math:`t` and :math:`t+1` are in the same leaf), MRF takes the maximal weight allocated to :math:`t` as the final weight :math:`w(t; \zeta)`.
 
-Formally, define :math:`l_{-1}` as the lagged version of th leaf :math:`l`. In other words :math:`l_{-1}` is a set containing each observation from :math:`l`, with all of them lagged one step. :math:`l_{+1}` is the "forwarded" version. :math:`l_{-2}` and :math:`l_{+2}` are two-steps equivalents. For a given candidate subsample :math:`l`, the podium is:
+Formally, define :math:`l_{-1}` as the lagged version of the leaf :math:`l`. In other words :math:`l_{-1}` is a set containing each observation from :math:`l`, with all of them lagged one step. :math:`l_{+1}` is the "forwarded" version. :math:`l_{-2}` and :math:`l_{+2}` are two-steps equivalents. For a given candidate subsample :math:`l`, the podium is:
 
 .. math::
    
