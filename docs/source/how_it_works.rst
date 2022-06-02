@@ -7,7 +7,7 @@ This is a simple explanation of MRF, how it works and why it's useful. The algor
 Setup
 --------
 
-Within the modern ML canon, random forest is an extremely popular algorithm because it allows for complex nonlinearities, handled high-dimensional data, bypasses overfitting, and requires little to no tuning. However, while random forest gladly delivers gains in prediction accuracy (and ergo a conditional mean closer to the truth), it is much more reluctant to disclose its inherent model. 
+Within the modern ML canon, random forest is an extremely popular algorithm because it allows for complex nonlinearities, handles high-dimensional data, bypasses overfitting, and requires little to no tuning. However, while random forest gladly delivers gains in prediction accuracy (and ergo a conditional mean closer to the truth), it is much more reluctant to disclose its inherent model. 
 
 MRF shifts the focus of the forest away from predicting :math:`y_t` into modelling :math:`\beta_t`, which are the economically meaningful coefficients in a time-varying linear macro equation. More formally:
 
@@ -26,9 +26,11 @@ MRF shifts the focus of the forest away from predicting :math:`y_t` into modelli
    \end{equation}
 
 
-Where :math:`S_t` are the state variables governing time variation and :math:`\mathcal{F}` is a forest. :math:`X_t` is typically a subset of :math:`S_t` which we want to be time-varying. This setup provides strong generality. For instance, :math:`X_t` could use lags of :math:`y_t` - what is called an autoregressive random forest (ARRF). Typically :math:`X_t \subset S_t` is rather small (and focused) compared to :math:`S_t`. 
+Where :math:`S_t` are the state variables governing time variation and :math:`\mathcal{F}` is a forest. :math:`X_t` is typically a subset of :math:`S_t` which we want to emphasize and for which associated coefficients may be of economic interest. There are interesting special cases. For instance, :math:`X_t` could use lags of :math:`y_t` -- an autoregressive random forest (ARRF) – which will outperform RF when applied to persistent time series. Typically :math:`X_t \subset S_t` is rather small (and focused) compared to :math:`S_t`. 
 
-The beauty of the setup resides in combining the linear macro equation with the random forest ML algorithm. This allows our linear coefficient, which we can interpret and make inference about, to nest the important time-series nonlinearities captured by the forest.
+The new algorithm comes with some benefits. First, it can be interpreted. Its main output, Generalized Time-Varying Parameters (GTVPs) is a versatile device nesting many popular nonlinearities (threshold/switching, smooth transition, structural breaks/change). In the end, we simply get a linear equation with time-varying coefficients following a very general law of motion. The latter is powered by a large data set, and an algorithm particularly apt with complex nonlinearities and high-dimensionality. 
+
+By striking an appealing balance of efficiency and flexibility, it forecasts better. Most ML algorithms are designed for large cross-sectional data sets, whereas macroeconomics is characterized by short dependent time series. If persistence (or any other linear relationship) is pervasive, important efficiency gains ensue from modeling them directly. When measured against econometric approaches, MRF can again perform better, but now by being less rigid about :math:`\beta_t`’s law of motion and avoiding overfitting. 
 
 Random Forest
 --------
@@ -50,11 +52,11 @@ After randomising over rows, we then take a random subset of the predictors, cal
 
 Practically, optimisation over :math:`c` happens by sampling empirical quantiles of the predictor to be split. These become the possible options for the splits and we evaluate least squares repeatedly to find the optimal splitting point for a given predictor :math:`j`. In an outer loop, we take the minimum to find :math:`j^* \in \mathcal{J}^{-}` and :math:`c^* \in \mathbb{R}`.
 
-This process is, in principle, a greedy search algorithm. A greedy algorithm makes "locally" optimal decisions, rather than finding the globally optimal solution.
+This process is, in principle, a greedy search algorithm. A greedy algorithm makes locally optimal decisions, rather than finding the globally optimal solution.
 
 .. image:: /images/Greedy_v_true.svg
 
-However, various properties of random forests reduce the extent to which this is a problem in practice. First, each tree is grown on a bootstrapped sample, meaning that we are selecting many observation triplets :math:`[y_t, X_t, S_t]` for each tree that is fit. This means the trees are diversified by being fit on many different random subsamples. By travelling down a wide array of optimization routes, the forest safeguards against landing at a single greedy solution.
+However, various properties of random forests reduce the extent to which this is a problem in practice. First, each tree is grown on a bootstrapped sample, meaning that we are selecting many observation triplets :math:`[y_t, X_t, S_t]` for each tree that is fit. This means the trees are diversified by being fit on many different random subsamples. By travelling down a wide array of optimization routes, the forest safeguards against landing at a sub-optimal solution.
 
 This problem is further alleviated in our context by growing trees semi-stochastically. In Equation :math:`\ref{a}`, this is made operational by using :math:`\mathcal{J}^{-} \in \mathcal{J}` rather than :math:`\mathcal{J}`. This means that at each step of the recursion, a different subsample of regressors is drawn to constitute candidates for the split. This prevents the greedy algorithm from always embarking on the same optimization route. As a result, trees are further diversified and computing time reduced.
 
