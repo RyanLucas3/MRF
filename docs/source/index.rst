@@ -36,7 +36,7 @@ Macroeconomic Random Forest
 
 Macro Random Forest (MRF) offers the power of a Random Forest with the interpretability of a linear regression.
 
-Created by Ryan Lucas, this code base is the official open-source implementation of "The Macroeconomy as a Random Forest" by Philippe Goulet Coulombe. MRF is a time series modification of the canonical Random Forest Machine Learning algorithm. It uses a Random Forest to flexibly model time-varying parameters in a linear macro equation. This means that, unlike most Machine Learning methods, MRF is directly interpretable via its main output -- Generalised Time Varying Parameters (GTVPs).
+Created by Ryan Lucas (UCD, MIT), this code base is the open-source implementation of "The Macroeconomy as a Random Forest" by Philippe Goulet Coulombe (UQAM). MRF is a time series modification of the canonical Random Forest Machine Learning algorithm. It uses a Random Forest to flexibly model time-varying parameters in a linear macro equation. This means that, unlike most Machine Learning methods, MRF is directly interpretable via its main output -- Generalized Time Varying Parameters (GTVPs).
   
 The model has shown forecasting gains over numerous alternatives and across many time series datasets. It is well suited to macroeconomic forecasting, but there are also many possible extensions to quantitative finance or any field of science with time series data. The full paper corresponding to the implementation can be found here: https://arxiv.org/abs/2006.12724
 
